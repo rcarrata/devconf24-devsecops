@@ -1,10 +1,10 @@
-# Dev Conf CZ 2024 - Implementing DevSecOps in Production with Stackrox and Tekton Session
+# DevConf CZ 2024 - Implementing DevSecOps in Production with Stackrox and Tekton Session
 
 Repository for the DevConf CZ 2024 about Implementing DevSecOps in Production with Stackrox and Tekton session.
 
 ## Abstract
 
-In this session, we will demonstrate how to implement DevSecOps pipelines in production using Stackrox and Tekton and other Open Source Security tools such as Sigstore among others. 
+In this [session](https://pretalx.com/devconf-cz-2024/talk/SVZAJH/), we will demonstrate how to implement DevSecOps pipelines in production using Stackrox and Tekton and other Open Source Security tools such as Sigstore among others. 
 
 We will demonstrate how to eliminate security risks on our CICD pipelines implementing DevSecOps, and securing the software supply chain providing continuous scanning and runtime protection. On the other hand, we will demonstrate how to shift the security left, detecting and remediating vulnerabilities and misconfigurations that could affect the security of our workloads in production. 
 
