@@ -20,11 +20,17 @@ kubectl get secret -n ${NAMESPACE} cosign -o jsonpath="{.data.cosign\.key}" | ba
 
 ## Testing Cosign
 
+* Pull image from quay.io (public repo), and push it to the personal one:
+
 ```bash
 podman pull quay.io/centos7/httpd-24-centos7:20220713
-podman tag quay.io/centos7/httpd-24-centos7:20220713 ghcr.io/${USERNAME}/centos7/httpd-24-centos7:0.1
+podman tag quay.io/centos7/httpd-24-centos7:20220713 quay.io/${USERNAME}/centos7/httpd-24-centos7:0.1
 podman push  quay.io/${USERNAME}/httpd-24-centos7:0.1
+```
 
+* Sign and verify the container image signed with the Sigstore Keypairs:
+
+```bash
 cosign sign --key cosign.key quay.io/${USERNAME}/httpd-24-centos7:0.1
 
 cosign verify --key cosign.pub quay.io/${USERNAME}/httpd-24-centos7:0.1

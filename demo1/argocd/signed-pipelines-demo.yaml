@@ -9,9 +9,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: manifests/
-    repoURL: https://github.com/rcarrata/ocp4-network-security
-    targetRevision: sign-acs
+    path: demo1/manifests/
+    repoURL: https://github.com/rcarrata/devconf24-devsecops
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
