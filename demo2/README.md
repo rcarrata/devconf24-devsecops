@@ -15,7 +15,7 @@ export ROX_API_TOKEN="xxx"
 * [Install the roxctl cli](https://docs.openshift.com/acs/3.66/cli/getting-started-cli.html#installing-cli-on-linux_cli-getting-started) and use the roxctl check image to verify if the API Token is working properly:
 
 ```
-roxctl --insecure-skip-tls-verify image check --endpoint $ACS_ROUTE:443 --image quay.io/centos7/httpd-24-centos7:centos7
+roxctl image check --insecure-skip-tls-verify --endpoint $ACS_ROUTE:443 --image quay.io/centos7/httpd-24-centos7:centos7
 ```
 
 The output of the command will show that two policies are violated, so the roxctl image check is working as expected:
@@ -33,6 +33,7 @@ NOTE: For further information check the [ACS Integration with CI Systems](https:
 
 * To be able to authenticate from the Tekton Pipelines towards the Stackrox / ACS API, the roxctl tasks used in the pipelines needs to have both ROX_API_TOKEN (generated in one step before) and the ACS Route as well:
 
+**Linux**
 ```
 echo $ROX_API_TOKEN
 echo $ACS_ROUTE
@@ -50,6 +51,21 @@ type: Opaque
 EOF
 
 kubectl apply -f /tmp/roxsecret.yaml
+```
+
+**MacOS**
+```
+cat > /tmp/roxsecret.yaml << EOF
+apiVersion: v1
+data:
+  rox_api_token: "$(echo $ROX_API_TOKEN | tr -d '\n' | base64)"  
+  rox_central_endpoint: "$(echo $ACS_ROUTE:443 | tr -d '\n' | base64)"  
+kind: Secret
+metadata:
+  name: roxsecrets
+  namespace: ${NAMESPACE}
+type: Opaque
+EOF
 ```
 
 TODO: check the -w0 because base64 adds one new line
