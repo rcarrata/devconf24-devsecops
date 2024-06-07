@@ -62,7 +62,7 @@ kubectl create -f run/sign-images-pipelinerun.yaml
 * This pipeline will deploy the signed image and also will be validated against ACS/Stackrox System policy:
 
 ```bash
-k get deploy -n workshop pipelines-vote-api
+kubectl get deploy -n workshop pipelines-vote-api
 NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
 pipelines-vote-api   1/1     1            1           29h
 ```

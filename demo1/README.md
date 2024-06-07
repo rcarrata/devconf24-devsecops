@@ -48,7 +48,7 @@ EOF
 * After the Argo App is fully synched and finished properly, check the Stackrox / ACS route:
 
 ```
-ACS_ROUTE=$(k get route -n stackrox central -o jsonpath='{.spec.host}')
+ACS_ROUTE=$(kubectl get route -n stackrox central -o jsonpath='{.spec.host}')
 
 curl -Ik https://${ACS_ROUTE}
 ```
@@ -65,10 +65,10 @@ NOTE: Check that you're getting a 200.
 
 <img align="center" width="650" src="../assets/quay2.png">
 
-* Grab the QUAY_TOKEN and the USERNAME that is provided:
+* Grab the QUAY_TOKEN and the QUAY_USERNAME that is provided:
 
 ```
-USERNAME=<Robot_Account_Username>
+QUAY_USERNAME=<Robot_Account_Username>
 QUAY_TOKEN=<Robot_Account_Token>
 ```
 
@@ -78,8 +78,8 @@ QUAY_TOKEN=<Robot_Account_Token>
 
 ```bash
 export QUAY_TOKEN=""
-export EMAIL="xxx"
-export USERNAME="rcarrata+acs_integration"
+export QUAY_EMAIL="xxx"
+export QUAY_USERNAME="rcarrata+acs_integration"
 export NAMESPACE="demo-sign"
 ```
 
@@ -92,7 +92,7 @@ kubectl create ns ${NAMESPACE}
 * Generate a docker-registry secret with the credentials for Quay Registry to push/pull the images and signatures:
 
 ```bash
-kubectl create secret docker-registry regcred --docker-server=quay.io --docker-username=${USERNAME} --docker-email=${EMAIL}--docker-password=${QUAY_TOKEN} -n ${NAMESPACE}
+kubectl create secret docker-registry regcred --docker-server=quay.io --docker-username="${QUAY_USERNAME}" --docker-email="${QUAY_EMAIL}" --docker-password="${QUAY_TOKEN}" -n ${NAMESPACE}
 ```
 
 * Add the imagePullSecret to the ServiceAccount “pipeline” in the namespace of the demo:
