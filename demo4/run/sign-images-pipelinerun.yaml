@@ -10,11 +10,11 @@ spec:
     - name: deployment-name
       value: pipelines-vote-api
     - name: git-url
-      value: 'https://github.com/openshift/pipelines-vote-api.git'
+      value: "https://github.com/openshift/pipelines-vote-api.git"
     - name: git-revision
       value: master
     - name: IMAGE
-      value: 'quay.io/rcarrata/pipelines-vote-api:v5'
+      value: "quay.io/rcarrata/pipelines-vote-api:v11"
     - name: namespace
       value: demo-sign
   pipelineRef:

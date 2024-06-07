@@ -12,13 +12,12 @@ QUAY_TOKEN=<Robot_Account_Token>
 * Generate a pki key-pair for signing with cosign:
 
 ```bash
-export COSIGN_PASSWORD="changeme"
-# Alternative with pwgen
-# export COSIGN_PASSWORD="$(pwgen 8 1)"
 cosign generate-key-pair k8s://${NAMESPACE}/cosign
 
 kubectl get secret -n ${NAMESPACE} cosign -o jsonpath="{.data.cosign\.key}" | base64 -d >> cosign.key
 ```
+
+> NOTE: Using the environment variable SIGSTORE_PASSWORD caused several. Use the password input instead.
 
 ## Testing Cosign
 
