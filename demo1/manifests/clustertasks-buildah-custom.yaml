@@ -71,6 +71,10 @@ spec:
         - mountPath: /var/lib/containers
           name: varlibcontainers
       workingDir: $(workspaces.source.path)
+      securityContext:
+        capabilities:
+          add:
+            - SETFCAP
     - image: $(params.BUILDER_IMAGE)
       name: push
       resources: {}
@@ -87,6 +91,10 @@ spec:
           name: regcred
           readOnly: true
       workingDir: $(workspaces.source.path)
+      securityContext:
+        capabilities:
+          add:
+            - SETFCAP
     - image: $(params.BUILDER_IMAGE)
       name: digest-to-results
       resources: {}
