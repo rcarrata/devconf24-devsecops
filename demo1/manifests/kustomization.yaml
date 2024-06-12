@@ -5,7 +5,6 @@ namespace: demo-sign
 
 resources:
 - clustertasks-buildah-custom.yaml
-- sign-images-pipeline-pvc.yaml
 - sign-images-pipeline.yaml
 - unsigned-images-pipeline.yaml
 - tasks-apply-manifests.yaml
